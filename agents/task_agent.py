@@ -15,7 +15,7 @@ class TaskAgent:
         self.chat = GigaChat(
             credentials=os.environ['GIGACHAT_CREDENTIALS'],
             verify_ssl_certs=False,
-            scope='GIGACHAT_API_CORP'
+            scope='GIGACHAT_API_PERS'
         )
         print("TaskAgent (GigaChat) инициализирован.")
 
@@ -30,7 +30,7 @@ class TaskAgent:
                 ),
                 HumanMessage(content=text),
             ]
-            response = self.chat(messages)
+            response = self.chat.invoke(messages)
             return response.content
         except Exception as e:
             print(f"Ошибка при обращении к GigaChat: {e}")

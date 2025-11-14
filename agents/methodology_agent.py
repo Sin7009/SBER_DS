@@ -14,7 +14,7 @@ class MethodologyAgent:
         self.chat = GigaChat(
             credentials=os.environ['GIGACHAT_CREDENTIALS'],
             verify_ssl_certs=False,
-            scope='GIGACHAT_API_CORP'
+            scope='GIGACHAT_API_PERS'
         )
         print("MethodologyAgent (GigaChat) инициализирован.")
 
@@ -27,7 +27,7 @@ class MethodologyAgent:
                 SystemMessage(content=system_prompt),
                 HumanMessage(content=user_prompt),
             ]
-            response = self.chat(messages)
+            response = self.chat.invoke(messages)
             return response.content
         except Exception as e:
             print(f"Ошибка при обращении к GigaChat в MethodologyAgent: {e}")
